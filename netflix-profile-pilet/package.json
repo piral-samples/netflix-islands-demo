@@ -1,6 +1,6 @@
 {
   "name": "@netflix-islands/pilet-profile",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "keywords": [
     "pilet"
@@ -24,7 +24,7 @@
   "scripts": {
     "start": "pilet debug",
     "debug-all": "pilet debug ../*-pilet/src/index.tsx",
-    "deploy": "pilet publish --fresh --url https://feed.dev.piral.cloud/api/v1/pilet/netflix-islands-demo --interactive",
+    "deploy": "pilet build && pilet pack && pilet publish --url https://feed.dev.piral.cloud/api/v1/pilet/netflix-islands-demo --interactive",
     "build": "pilet build"
   },
   "main": "dist/index.js",

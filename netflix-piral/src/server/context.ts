@@ -19,8 +19,8 @@ import { UserPiletContext, StateContext, Registry } from "./types";
 const client = readFile(resolve(__dirname, "client.js"), "utf8");
 
 const loadPilet: PiletLoader = async (entry) => {
-  if (entry.spec === "v3" && "link" in entry) {
-    const { dependencies = {}, config = {}, link, ...rest } = entry;
+  if ("link" in entry) {
+    const { dependencies = {}, config = {}, link, ...rest } = entry as any;
     const meta = Object.assign({ dependencies, config, link }, rest);
 
     extendSharedDependencies(dependencies);
