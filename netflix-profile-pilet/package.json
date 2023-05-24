@@ -1,0 +1,33 @@
+{
+  "name": "@netflix-islands/pilet-profile",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "pilet"
+  ],
+  "importmap": {
+    "imports": {
+      "react": "react"
+    },
+    "inherit": []
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "piral-cli": "0.15.12",
+    "piral-cli-esbuild": "next",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "typescript": "^5.0.4"
+  },
+  "scripts": {
+    "start": "pilet debug",
+    "debug-all": "pilet debug ../*-pilet/src/index.tsx",
+    "build": "pilet build"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ]
+}

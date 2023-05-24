@@ -1,0 +1,13 @@
+{
+  "watch": ["src"],
+  "ignore": ["node_modules"],
+  "ext": "ts,tsx",
+  "exec": "npm run build && node ./dist/server.js",
+  "legacyWatch": true,
+  "env": {
+    "FEED_EVENTS": "ws://localhost:1234/$pilet-api",
+    "FEED_URL": "http://localhost:1234/$pilet-api",
+    "PORT": 3000,
+    "HOST": "localhost"
+  }
+}
