@@ -1,16 +1,13 @@
-import "systemjs";
-import "systemjs/dist/extras/named-register.js";
-
 import WebSocket from "ws";
 import { createServer } from "@hattip/adapter-node";
 import { events } from "./events";
 import { handler } from "./handler";
-import { feedEvents, port, host } from "./constants";
+import { feedEvents, port, host, reconnectInterval } from "./constants";
 import { installFetchInterceptor } from "./fetch";
 
 installFetchInterceptor();
 
-createServer(handler).listen(port, () => {
+function connect() {
   const ws = new WebSocket(feedEvents, {
     perMessageDeflate: false,
   });
@@ -25,6 +22,16 @@ createServer(handler).listen(port, () => {
       events.emit("pilet-changed", msg.data);
     }
   });
+
+  ws.on("close", function () {
+    // make sure to always have a WS connection => reconnect
+    // automatically once the given interval (in ms) is over
+    setTimeout(connect, reconnectInterval);
+  });
+}
+
+createServer(handler).listen(port, () => {
+  connect();
 
   console.log(`Server listening on http://${host}:${port}`);
 });

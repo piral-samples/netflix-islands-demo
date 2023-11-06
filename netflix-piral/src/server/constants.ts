@@ -1,4 +1,5 @@
 export const port = +process.env.PORT || 3000;
+export const reconnectInterval = 10 * 1000;
 export const host = process.env.HOST || "localhost";
 export const server = process.env.WEBSITE_URL
   ? `https://${process.env.WEBSITE_URL}`
