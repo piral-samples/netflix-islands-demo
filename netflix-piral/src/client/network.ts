@@ -9,7 +9,7 @@ export async function updateStore(store: string, item: any) {
 }
 
 export async function renderFragment(name: string, params: any) {
-  const query = Object.entries(params)
+  const query = Object.entries(params || {})
     .map(
       ([name, value]) =>
         `${encodeURIComponent(name)}=${encodeURIComponent(value as string)}`

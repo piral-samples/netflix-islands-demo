@@ -403,11 +403,28 @@ function installPiralDebug(options: DebuggerOptions) {
   start();
 }
 
+function listenForChanges() {
+  const es = new EventSource('/browser-refresh');
+  es.onmessage = (e) => {
+    console.debug('Received browser refresh event', JSON.parse(e.data));
+
+    // only retrieve top-level slots
+    const allSlots = document.querySelectorAll('piral-slot:not(piral-slot piral-slot)');
+
+    allSlots.forEach(slot => {
+      // @ts-ignore
+      slot?.rerender();
+    });
+  };
+}
+
 export function integrateDebugTools(
   events: EventEmitter,
   state: PiralClientState
 ) {
-  console.debug(state);
+  console.debug('Deserialized state', state);
+
+  listenForChanges();
 
   installPiralDebug({
     fireEvent(name, args) {

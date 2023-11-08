@@ -1,12 +1,13 @@
 import { PiletMetadata } from "piral-base";
 import { events } from "./events";
+import { changeEvent } from "./constants";
 import { createNewContext, reloadContext } from "./context";
 import { StateContext, PiletContext, UserPiletContext } from "./types";
 
 const globalCache = new Map<string, PiletContext>();
 const userCache = new Map<string, StateContext>();
 
-events.on("pilet-changed", (pilet: PiletMetadata) => {
+events.on(changeEvent, (pilet: PiletMetadata) => {
   globalCache.clear();
 });
 

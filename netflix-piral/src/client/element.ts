@@ -113,12 +113,16 @@ export function createCustomElements(state: PiralClientState, api: PiletApi) {
           this.innerHTML = "";
 
           if (newValue) {
-            this.interactive = false;
-            await this.setupChildren();
-            this.interactive = true;
+            this.rerender();
           }
         }
       }
+    }
+
+    async rerender() {
+      this.interactive = false;
+      await this.setupChildren();
+      this.interactive = true;
     }
 
     async setupChildren() {

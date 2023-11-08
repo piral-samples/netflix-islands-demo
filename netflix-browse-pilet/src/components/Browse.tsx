@@ -25,10 +25,12 @@ const Browse: React.FC<BrowseProps> = ({ api, hero, showcases }) => {
 
   return (
     <div className="Browse">
+      <api.Component name="BrowsePageTop" />
       <Hero {...hero} FavoritesButton={FavoritesButton} />
       {showcases.map((data, i) => (
         <Showcase MovieTile={MovieTile} {...data} key={i} />
       ))}
+      <api.Component name="BrowsePageBottom" />
     </div>
   );
 };

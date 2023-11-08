@@ -36,7 +36,9 @@ export const handler: HattipHandler = async (context) => {
   const url = new URL(context.request.url);
   const pathname = url.pathname;
 
-  if (pathname.startsWith("/api/")) {
+  if (pathname === '/browser-refresh') {
+    return context.passThrough();
+  } else if (pathname.startsWith("/api/")) {
     const [piletContext, sessionId] = await getPiletContext(context);
     initAsyncContext(sessionId, piletContext, context);
     const response = await callRegisteredHandlers(
