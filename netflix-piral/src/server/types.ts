@@ -4,6 +4,7 @@ import { ComponentType, HTMLAttributes, ReactNode } from "react";
 export interface MfComponentProps {
   name: string;
   params?: any;
+  rel?: 'router';
   render?(nodes: Array<ReactNode>): ReactNode;
 }
 
@@ -70,6 +71,7 @@ interface PiralSlotProps extends HTMLAttributes<{}> {
   name: string;
   group: string;
   params: string;
+  rel?: string;
 }
 
 declare global {

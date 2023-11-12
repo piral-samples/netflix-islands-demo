@@ -10,7 +10,7 @@ function defaultRender(nodes: Array<React.ReactNode>): React.ReactNode {
 export function makeComponent(
   registry: Registry
 ): React.ComponentType<MfComponentProps> {
-  return ({ name, params, render = defaultRender }) => {
+  return ({ name, params, rel, render = defaultRender }) => {
     const components = React.useMemo(
       () => registry.components.get(name) || [],
       [name]
@@ -18,7 +18,7 @@ export function makeComponent(
     const group = React.useMemo(() => v4(), []);
 
     return (
-      <piral-slot name={name} params={JSON.stringify(params)} group={group}>
+      <piral-slot name={name} params={JSON.stringify(params)} group={group} rel={rel}>
         {render(
           components.map((ref, i) => (
             <PiralComponent

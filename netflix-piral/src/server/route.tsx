@@ -21,7 +21,7 @@ export function getFragment(name: string, url: URL, context: UserPiletContext) {
           );
 
           return (
-            <context.Component name={reference.component} params={props} />
+            <context.Component name={reference.component} params={props} rel="router" />
           );
         }
       }

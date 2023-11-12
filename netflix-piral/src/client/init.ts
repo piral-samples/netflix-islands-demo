@@ -7,6 +7,7 @@ import {
 } from "piral-base/minimal";
 import { Component } from "./Component";
 import { createStores, deserializeState } from "./state";
+import { createpClientSideRouter } from "./router";
 import { integrateDebugTools } from "./debug";
 import { createCustomElements } from "./element";
 import { Stores } from "./types";
@@ -35,4 +36,6 @@ export async function initPiral() {
   await createStores(state, stores, api);
 
   createCustomElements(state, api);
+
+  createpClientSideRouter();
 }
